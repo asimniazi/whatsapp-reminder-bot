@@ -1,0 +1,24 @@
+# Environment variables - NEVER upload
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+virtual-environment/
+.venv/
+venv/
+env/
+
+# Streamlit (purana dashboard)
+dashboard.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
