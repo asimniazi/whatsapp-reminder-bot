@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemindBot — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="light">
+
+<div class="ambient">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+</div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar" id="sidebar">
+    <div class="brand">
+        <div class="brand-mark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <span class="brand-text">RemindBot</span>
+    </div>
+
+    <nav class="nav">
+        <a class="nav-link active" data-section="dashboard" onclick="go('dashboard',this)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Dashboard</span>
+        </a>
+        <a class="nav-link" data-section="new" onclick="go('new',this)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span>New Reminder</span>
+        </a>
+        <a class="nav-link" data-section="reminders" onclick="go('reminders',this)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>Active Reminders</span>
+        </a>
+        <a class="nav-link" data-section="guide" onclick="go('guide',this)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>How to Use</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="bot-badge">
+            <span class="live-dot" id="liveDot"></span>
+            <span id="liveLabel">Checking…</span>
+        </div>
+        <div class="pk-time" id="pkTime">--:-- --</div>
+    </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+    <header class="topbar">
+        <div class="tb-left">
+            <button class="icon-btn" onclick="toggleSidebar()">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="page-label" id="pageLabel">Dashboard</span>
+        </div>
+        <div class="tb-right">
+            <div class="time-pill" id="topTime">--:-- --</div>
+            <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">
+                <svg id="themeIco" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── DASHBOARD ─── -->
+    <div class="page active" id="pg-dashboard">
+        <div class="hero">
+            <div class="hero-orb"></div>
+            <div class="hero-copy">
+                <div class="greeting" id="greeting">Good Morning</div>
+                <h1>Your reminders,<br><em>always on time.</em></h1>
+                <p>Set reminders in English or Urdu — via WhatsApp or voice call.</p>
+                <button class="cta-btn" onclick="go('new', document.querySelector('[data-section=new]'))">
+                    + Set a Reminder
+                </button>
+            </div>
+        </div>
+
+        <div class="cards-row">
+            <div class="info-card" style="--i:0">
+                <div class="ic-label">Pakistan Time</div>
+                <div class="ic-value mono" id="cardTime">--:-- --</div>
+            </div>
+            <div class="info-card" style="--i:1">
+                <div class="ic-label">Active Reminders</div>
+                <div class="ic-value" id="cardCount">0</div>
+            </div>
+            <div class="info-card" style="--i:2">
+                <div class="ic-label">Bot Status</div>
+                <div class="ic-value status-val" id="cardStatus">Checking…</div>
+            </div>
+        </div>
+
+        <div class="list-header">
+            <span class="list-title">Recent Reminders</span>
+            <button class="ghost-btn" onclick="loadReminders()">↻ Refresh</button>
+        </div>
+        <div id="dashList" class="r-list"></div>
+    </div>
+
+    <!-- ─── NEW REMINDER ─── -->
+    <div class="page" id="pg-new">
+        <div class="form-wrap">
+            <div class="form-heading">
+                <h2>New Reminder</h2>
+                <p>Fill in the details below and we'll notify you right on time.</p>
+            </div>
+
+            <div class="field-grid">
+                <div class="field span2">
+                    <label>Phone Number</label>
+                    <div class="inp-box">
+                        <svg class="inp-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                        <input type="text" id="fPhone" value="923000281455" placeholder="923001234567">
+                    </div>
+                </div>
+
+                <div class="field span2">
+                    <label>Task</label>
+                    <div class="inp-box">
+                        <svg class="inp-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                        <input type="text" id="fTask" placeholder="e.g. Drink water, Call John, Take medicine">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Date</label>
+                    <div class="inp-box">
+                        <svg class="inp-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <input type="date" id="fDate">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Time</label>
+                    <div class="inp-box">
+                        <svg class="inp-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <input type="time" id="fTime" value="08:00">
+                    </div>
+                </div>
+
+                <div class="field span2">
+                    <label>Notify via</label>
+                    <div class="seg-ctrl">
+                        <button class="seg active" id="segMsg" onclick="setType('message')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            WhatsApp Message
+                        </button>
+                        <button class="seg" id="segCall" onclick="setType('call')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                            Phone Call
+                        </button>
+                    </div>
+                    <input type="hidden" id="rType" value="message">
+                </div>
+            </div>
+
+            <button class="submit-btn" id="submitBtn" onclick="submitReminder()">
+                Set Reminder
+            </button>
+            <div id="fMsg" class="f-msg hidden"></div>
+        </div>
+    </div>
+
+    <!-- ─── ACTIVE REMINDERS ─── -->
+    <div class="page" id="pg-reminders">
+        <div class="list-header" style="margin-bottom:1.5rem">
+            <span class="list-title" style="font-size:1.5rem">Active Reminders</span>
+            <button class="ghost-btn" onclick="loadReminders()">↻ Refresh</button>
+        </div>
+        <div id="allList" class="r-list"></div>
+    </div>
+
+    <!-- ─── GUIDE ─── -->
+    <div class="page" id="pg-guide">
+        <div class="guide-top">
+            <h2>How to Use</h2>
+            <p>Send any of these messages directly to your WhatsApp bot — it understands English and Urdu.</p>
+        </div>
+        <div class="guide-grid">
+            <div class="g-card" style="--i:0">
+                <div class="g-ico">💬</div>
+                <div class="g-title">English</div>
+                <ul>
+                    <li>Remind me to drink water at 5pm</li>
+                    <li>Remind me to call John at 9am tomorrow</li>
+                    <li>Set reminder for meeting on Monday 3pm</li>
+                    <li>Remind me to take medicine at 8am</li>
+                </ul>
+            </div>
+            <div class="g-card" style="--i:1">
+                <div class="g-ico">🇵🇰</div>
+                <div class="g-title">Urdu / Roman Urdu</div>
+                <ul>
+                    <li>Mujhe yaad dilao ke 8 baje medicine leni hai</li>
+                    <li>Kal subah 9 baje meeting remind karna</li>
+                    <li>Aaj raat 10 baje paani peena yaad dilana</li>
+                    <li>Har roz 7 baje exercise reminder do</li>
+                </ul>
+            </div>
+            <div class="g-card" style="--i:2">
+                <div class="g-ico">📞</div>
+                <div class="g-title">Call Reminders</div>
+                <ul>
+                    <li>Call me to remind about meeting at 5pm</li>
+                    <li>Phone kar k remind karna kal 9 baje</li>
+                    <li>Call karo jab 3 baje ho aaj</li>
+                    <li>Mujhe call karke yaad dilana</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
