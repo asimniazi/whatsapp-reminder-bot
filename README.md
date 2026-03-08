@@ -1,6 +1,3 @@
-# whatsapp-reminder-bot
-AI-powered WhatsApp reminder bot — set reminders via WhatsApp or dashboard in English &amp; Urdu. Built with FastAPI, Groq, Green API &amp; VAPI.
-
 # 🔔 WhatsApp Reminder Bot
 
 > AI-powered personal reminder assistant — set reminders via WhatsApp or dashboard in English & Urdu.
@@ -9,10 +6,6 @@ AI-powered WhatsApp reminder bot — set reminders via WhatsApp or dashboard in 
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green?style=flat-square&logo=fastapi)
 ![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3-orange?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)
-
-<img width="485" height="442" alt="image" src="https://github.com/user-attachments/assets/b7c80b29-0f13-4fd8-bbb6-12a6aa6ea684" />
-<img width="1916" height="908" alt="image" src="https://github.com/user-attachments/assets/c5ea5508-523d-4ce6-8cb2-e1325dfbbfef" />
-<img width="1909" height="979" alt="image" src="https://github.com/user-attachments/assets/a00e226f-f609-4167-886e-9a19b4fabdcb" />
 
 ---
 
@@ -28,11 +21,20 @@ AI-powered WhatsApp reminder bot — set reminders via WhatsApp or dashboard in 
 
 ---
 
-## 🖥️ Dashboard Preview
+## 📸 Screenshots
 
-| Light Mode | Dark Mode |
-|------------|-----------|
-| Clean white UI with purple accents | Sleek dark theme |
+### Image 1
+<img width="1916" height="908" alt="image" src="https://github.com/user-attachments/assets/ad982376-1343-4020-918f-fb755a93a0a2" />
+
+### Image 2
+<img width="1916" height="910" alt="image" src="https://github.com/user-attachments/assets/38afd917-aefd-44ca-8f7a-8b1dc1c0e220" />
+
+### Image 3
+<img width="1909" height="979" alt="image" src="https://github.com/user-attachments/assets/d25e2657-cf56-4031-9197-cf7bba65b5d4" />
+
+### Image 4
+<img width="485" height="442" alt="image" src="https://github.com/user-attachments/assets/bb614223-d27c-49db-8bb2-869845417a19" />
+
 
 ---
 
